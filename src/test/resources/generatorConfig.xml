@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <classPathEntry location="/Users/caojing/Work/dev/repository/repo-mvn/mysql/mysql-connector-java/5.1.35/mysql-connector-java-5.1.35.jar" />
+    <context id="testMyBatis3"
+             targetRuntime="studio.rollinrock.mybatis.IntrospectedTableMyBatis3ImplEnhancedExample" >
+
+        <!--<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin" >-->
+            <!--<property name="targetPackage" value="studio.rollinrock.mybatis3.mapper" />-->
+            <!--<property name="targetProject" value="src/test/java" />-->
+        <!--</plugin>-->
+
+        <plugin type="studio.rollinrock.mybatis.plugins.LombokDataAnnotationPlugin" />
+        <plugin type="studio.rollinrock.mybatis.plugins.SwaggerModelAnnotationPlugin" />
+        <!--<plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />-->
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+        <!--<property name="autoDelimitKeywords" value="true" />-->
+        <!--<plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin" />-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true" />
+            <property name="addRemarkComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mybatis"
+                        userId="root" password="caojing"/>
+        <javaModelGenerator targetPackage="studio.rollinrock.mybatis3.model" targetProject="src/test/java" />
+        <sqlMapGenerator targetPackage="studio.rollinrock.mybatis3.mapper" targetProject="src/test/java" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="studio.rollinrock.mybatis3.repository" targetProject="src/test/java" />
+        <table tableName="user_profile" />
+        <table tableName="points_mall_v2_banner" />
+    </context>
+
+
+</generatorConfiguration>
