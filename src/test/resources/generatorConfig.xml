@@ -15,7 +15,8 @@
         <!--</plugin>-->
 
         <plugin type="studio.rollinrock.mybatis.plugins.LombokDataAnnotationPlugin" />
-        <plugin type="studio.rollinrock.mybatis.plugins.SwaggerModelAnnotationPlugin" />
+        <!--<plugin type="studio.rollinrock.mybatis.plugins.SwaggerModelAnnotationPlugin" />-->
+        <plugin type="studio.rollinrock.mybatis.plugins.AdditionalQueryJavaFilePlugin" />
         <!--<plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />-->
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
         <!--<property name="autoDelimitKeywords" value="true" />-->
