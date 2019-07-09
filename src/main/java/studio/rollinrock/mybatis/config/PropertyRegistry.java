@@ -26,4 +26,9 @@ public class PropertyRegistry {
      * 是否添加Api注解
      */
     public static final String ADD_API_ANNOTATION = "addApiAnnotation";
+
+    /**
+     * java Model类名后缀
+     */
+    public static final String JAVA_MODEL_CLASS_NAME_SUFFIX = "PO";
 }

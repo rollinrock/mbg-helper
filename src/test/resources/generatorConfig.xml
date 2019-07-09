@@ -7,8 +7,7 @@
 
     <!--<classPathEntry  location="/Users/cj/.m2/repository/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar"/>-->
     <classPathEntry  location="/Users/cj/.m2/repository/mysql/mysql-connector-java/5.1.31/mysql-connector-java-5.1.31.jar"/>
-    <context id="testMyBatis3"  >
-        <!--targetRuntime="studio.rollinrock.mybatis.IntrospectedTableMyBatis3ImplEnhancedExample" >-->
+    <context id="testMyBatis3" >
 
         <!--<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin" >-->
             <!--<property name="targetPackage" value="studio.rollinrock.mybatis3.mapper" />-->
