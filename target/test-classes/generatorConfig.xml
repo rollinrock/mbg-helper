@@ -5,8 +5,7 @@
 
 <generatorConfiguration>
 
-    <!--<classPathEntry  location="/Users/cj/.m2/repository/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar"/>-->
-    <classPathEntry  location="/Users/cj/.m2/repository/mysql/mysql-connector-java/5.1.31/mysql-connector-java-5.1.31.jar"/>
+    <classPathEntry  location="/Users/cj/.m2/repository/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar"/>
     <context id="testMyBatis3"  >
         <!--targetRuntime="studio.rollinrock.mybatis.IntrospectedTableMyBatis3ImplEnhancedExample" >-->
 
@@ -35,12 +34,17 @@
             <property name="addRemarkComments" value="true" />
         </commentGenerator>
 
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/wochanye"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/wochanye"
                         userId="root" password="chinaunicom"/>
         <javaModelGenerator targetPackage="studio.rollinrock.mybatis3.model" targetProject="src/test/java" />
         <sqlMapGenerator targetPackage="studio.rollinrock.mybatis3.mapper" targetProject="src/test/resources" />
         <javaClientGenerator type="XMLMAPPER" targetPackage="studio.rollinrock.mybatis3.repository" targetProject="src/test/java" />
-        <table tableName="sys_config" domainObjectName="SysConfig"  >
+        <table tableName="t_mbg" domainObjectName="MbgPO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="true" >
 
 
 
