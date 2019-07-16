@@ -1,6 +1,8 @@
 package studio.rollinrock.mybatis;
 
+import org.mybatis.generator.api.GeneratedXmlFile;
 import org.mybatis.generator.api.ProgressCallback;
+import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.codegen.AbstractJavaClientGenerator;
 import org.mybatis.generator.codegen.AbstractJavaGenerator;
 import org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl;
@@ -14,6 +16,7 @@ import org.mybatis.generator.internal.ObjectFactory;
 import studio.rollinrock.mybatis.generator.EnhancedExampleGenerator;
 import studio.rollinrock.mybatis.generator.EnhancedJavaMapperGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +27,26 @@ import java.util.List;
  **/
 public class IntrospectedTableMyBatis3ImplEnhancedExample
         extends IntrospectedTableMyBatis3Impl{
+
+    @Override
+    public List<GeneratedXmlFile> getGeneratedXmlFiles() {
+        List<GeneratedXmlFile> answer = new ArrayList<>();
+        if (xmlMapperGenerator != null) {
+            // 新生成的xml文件是否采用追加模式:true - 追加; false - 覆盖
+            boolean isMergeable = false;
+            if (Boolean.parseBoolean(context.getProperty("mergable"))) {
+                isMergeable = true;
+            }
+            Document document = xmlMapperGenerator.getDocument();
+            GeneratedXmlFile gxf = new GeneratedXmlFile(document, getMyBatis3XmlMapperFileName(),
+                    getMyBatis3XmlMapperPackage(), context.getSqlMapGeneratorConfiguration().getTargetProject(),
+                    isMergeable, context.getXmlFormatter());
+            if (context.getPlugins().sqlMapGenerated(gxf, this)) {
+                answer.add(gxf);
+            }
+        }
+        return answer;
+    }
 
     @Override
     protected AbstractJavaClientGenerator createJavaClientGenerator() {
