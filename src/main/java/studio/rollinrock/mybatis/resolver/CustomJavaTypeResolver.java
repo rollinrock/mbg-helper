@@ -11,9 +11,8 @@ import java.util.Map;
 
 /**
  * 主要用于将数据库中的类型转换成相应实体类的类型
- *
  */
-public class CustomJavaTypeResolver extends JavaTypeResolverDefaultImpl {
+public final class CustomJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 
     protected Map<String, Integer> typeExtMap;
 
@@ -24,19 +23,15 @@ public class CustomJavaTypeResolver extends JavaTypeResolverDefaultImpl {
     }
 
     @Override
-    public String calculateJdbcTypeName(IntrospectedColumn introspectedColumn) {
-        for (String jdbcType : typeExtMap.keySet()) {
-            // 读取自定义配置，value值必须为className，并覆盖默认typeMap
-            String value = properties.getProperty(jdbcType);
-            if (StringUtility.stringHasValue(value)) {
-                typeMap.put(typeExtMap.get(jdbcType), new JdbcTypeInformation(
-                        jdbcType.substring(jdbcType.indexOf(".") + 1), new FullyQualifiedJavaType(value)));
-            }
+    protected FullyQualifiedJavaType overrideDefaultType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+        if (column.getJdbcType() == Types.TINYINT) {
+            if (column.getLength() == 1) return new FullyQualifiedJavaType(Boolean.class.getName());
+            else return new FullyQualifiedJavaType(Short.class.getName());
         }
-        return super.calculateJdbcTypeName(introspectedColumn);
+        return super.overrideDefaultType(column, defaultType);
     }
 
-    private void initTypeSet(){
+    private void initTypeSet() {
         typeExtMap.put("jdbcType.ARRAY", Types.ARRAY);
         typeExtMap.put("jdbcType.BIGINT", Types.BIGINT);
         typeExtMap.put("jdbcType.BINARY", Types.BINARY);

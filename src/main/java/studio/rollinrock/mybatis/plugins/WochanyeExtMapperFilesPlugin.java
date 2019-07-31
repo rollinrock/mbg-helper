@@ -131,8 +131,9 @@ public class WochanyeExtMapperFilesPlugin extends PluginAdapter {
      */
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
-        XmlElement parentElement = document.getRootElement();
-        updateDocumentNameSpace(introspectedTable, parentElement);
+        /* 不篡改mapper的命名空间，extMapper命名空间和mapper隔离 */
+//        XmlElement parentElement = document.getRootElement();
+//        updateDocumentNameSpace(introspectedTable, parentElement);
         return super.sqlMapDocumentGenerated(document, introspectedTable);
     }
 

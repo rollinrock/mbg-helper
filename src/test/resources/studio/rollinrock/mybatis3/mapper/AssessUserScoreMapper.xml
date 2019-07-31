@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studio.rollinrock.mybatis3.repository.AssessUserScoreMapper">
+  <resultMap id="BaseResultMap" type="studio.rollinrock.mybatis3.model.AssessUserScore">
+    <id column="id" property="id" />
+    <result column="user_id" property="userId" />
+    <result column="assess_period" property="assessPeriod" />
+    <result column="assess_year" property="assessYear" />
+    <result column="assess_month" property="assessMonth" />
+    <result column="score" property="score" />
+    <result column="ts" property="ts" />
+    <result column="deleted" property="deleted" />
+    <result column="create_time" property="createTime" />
+    <result column="creator" property="creator" />
+    <result column="update_time" property="updateTime" />
+    <result column="updater" property="updater" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, user_id, assess_period, assess_year, assess_month, score, ts, deleted, create_time, 
+    creator, update_time, updater
+  </sql>
+  <select id="selectByExample" parameterType="studio.rollinrock.mybatis3.model.AssessUserScoreExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from assess_user_score
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from assess_user_score
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from assess_user_score
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="studio.rollinrock.mybatis3.model.AssessUserScoreExample">
+    delete from assess_user_score
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="studio.rollinrock.mybatis3.model.AssessUserScore">
+    insert into assess_user_score (id, user_id, assess_period, 
+      assess_year, assess_month, score, 
+      ts, deleted, create_time, 
+      creator, update_time, updater
+      )
+    values (#{id}, #{userId}, #{assessPeriod}, 
+      #{assessYear}, #{assessMonth}, #{score}, 
+      #{ts}, #{deleted}, #{createTime}, 
+      #{creator}, #{updateTime}, #{updater}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="studio.rollinrock.mybatis3.model.AssessUserScore">
+    insert into assess_user_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="assessPeriod != null">
+        assess_period,
+      </if>
+      <if test="assessYear != null">
+        assess_year,
+      </if>
+      <if test="assessMonth != null">
+        assess_month,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="ts != null">
+        ts,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="userId != null">
+        #{userId},
+      </if>
+      <if test="assessPeriod != null">
+        #{assessPeriod},
+      </if>
+      <if test="assessYear != null">
+        #{assessYear},
+      </if>
+      <if test="assessMonth != null">
+        #{assessMonth},
+      </if>
+      <if test="score != null">
+        #{score},
+      </if>
+      <if test="ts != null">
+        #{ts},
+      </if>
+      <if test="deleted != null">
+        #{deleted},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="creator != null">
+        #{creator},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime},
+      </if>
+      <if test="updater != null">
+        #{updater},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="studio.rollinrock.mybatis3.model.AssessUserScoreExample" resultType="java.lang.Long">
+    select count(*) from assess_user_score
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update assess_user_score
+    <set>
+      <if test="record.id != null">
+        id = #{record.id},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId},
+      </if>
+      <if test="record.assessPeriod != null">
+        assess_period = #{record.assessPeriod},
+      </if>
+      <if test="record.assessYear != null">
+        assess_year = #{record.assessYear},
+      </if>
+      <if test="record.assessMonth != null">
+        assess_month = #{record.assessMonth},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score},
+      </if>
+      <if test="record.ts != null">
+        ts = #{record.ts},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime},
+      </if>
+      <if test="record.updater != null">
+        updater = #{record.updater},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update assess_user_score
+    set id = #{record.id},
+      user_id = #{record.userId},
+      assess_period = #{record.assessPeriod},
+      assess_year = #{record.assessYear},
+      assess_month = #{record.assessMonth},
+      score = #{record.score},
+      ts = #{record.ts},
+      deleted = #{record.deleted},
+      create_time = #{record.createTime},
+      creator = #{record.creator},
+      update_time = #{record.updateTime},
+      updater = #{record.updater}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="studio.rollinrock.mybatis3.model.AssessUserScore">
+    update assess_user_score
+    <set>
+      <if test="userId != null">
+        user_id = #{userId},
+      </if>
+      <if test="assessPeriod != null">
+        assess_period = #{assessPeriod},
+      </if>
+      <if test="assessYear != null">
+        assess_year = #{assessYear},
+      </if>
+      <if test="assessMonth != null">
+        assess_month = #{assessMonth},
+      </if>
+      <if test="score != null">
+        score = #{score},
+      </if>
+      <if test="ts != null">
+        ts = #{ts},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime},
+      </if>
+      <if test="updater != null">
+        updater = #{updater},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="studio.rollinrock.mybatis3.model.AssessUserScore">
+    update assess_user_score
+    set user_id = #{userId},
+      assess_period = #{assessPeriod},
+      assess_year = #{assessYear},
+      assess_month = #{assessMonth},
+      score = #{score},
+      ts = #{ts},
+      deleted = #{deleted},
+      create_time = #{createTime},
+      creator = #{creator},
+      update_time = #{updateTime},
+      updater = #{updater}
+    where id = #{id}
+  </update>
+</mapper>

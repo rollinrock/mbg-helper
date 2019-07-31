@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studio.rollinrock.mybatis3.repository.AssessScoreRuleMapper">
+  <resultMap id="BaseResultMap" type="studio.rollinrock.mybatis3.model.AssessScoreRule">
+    <id column="id" property="id" />
+    <result column="assess_period" property="assessPeriod" />
+    <result column="indicator" property="indicator" />
+    <result column="granted_score" property="grantedScore" />
+    <result column="assessed_score" property="assessedScore" />
+    <result column="extra_dynamic_score" property="extraDynamicScore" />
+    <result column="deleted" property="deleted" />
+    <result column="create_time" property="createTime" />
+    <result column="creator" property="creator" />
+    <result column="update_time" property="updateTime" />
+    <result column="updater" property="updater" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, assess_period, indicator, granted_score, assessed_score, extra_dynamic_score, 
+    deleted, create_time, creator, update_time, updater
+  </sql>
+  <select id="selectByExample" parameterType="studio.rollinrock.mybatis3.model.AssessScoreRuleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from assess_score_rule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from assess_score_rule
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from assess_score_rule
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="studio.rollinrock.mybatis3.model.AssessScoreRuleExample">
+    delete from assess_score_rule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="studio.rollinrock.mybatis3.model.AssessScoreRule">
+    insert into assess_score_rule (id, assess_period, indicator, 
+      granted_score, assessed_score, extra_dynamic_score, 
+      deleted, create_time, creator, 
+      update_time, updater)
+    values (#{id}, #{assessPeriod}, #{indicator}, 
+      #{grantedScore}, #{assessedScore}, #{extraDynamicScore}, 
+      #{deleted}, #{createTime}, #{creator}, 
+      #{updateTime}, #{updater})
+  </insert>
+  <insert id="insertSelective" parameterType="studio.rollinrock.mybatis3.model.AssessScoreRule">
+    insert into assess_score_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="assessPeriod != null">
+        assess_period,
+      </if>
+      <if test="indicator != null">
+        indicator,
+      </if>
+      <if test="grantedScore != null">
+        granted_score,
+      </if>
+      <if test="assessedScore != null">
+        assessed_score,
+      </if>
+      <if test="extraDynamicScore != null">
+        extra_dynamic_score,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="assessPeriod != null">
+        #{assessPeriod},
+      </if>
+      <if test="indicator != null">
+        #{indicator},
+      </if>
+      <if test="grantedScore != null">
+        #{grantedScore},
+      </if>
+      <if test="assessedScore != null">
+        #{assessedScore},
+      </if>
+      <if test="extraDynamicScore != null">
+        #{extraDynamicScore},
+      </if>
+      <if test="deleted != null">
+        #{deleted},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="creator != null">
+        #{creator},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime},
+      </if>
+      <if test="updater != null">
+        #{updater},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="studio.rollinrock.mybatis3.model.AssessScoreRuleExample" resultType="java.lang.Long">
+    select count(*) from assess_score_rule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update assess_score_rule
+    <set>
+      <if test="record.id != null">
+        id = #{record.id},
+      </if>
+      <if test="record.assessPeriod != null">
+        assess_period = #{record.assessPeriod},
+      </if>
+      <if test="record.indicator != null">
+        indicator = #{record.indicator},
+      </if>
+      <if test="record.grantedScore != null">
+        granted_score = #{record.grantedScore},
+      </if>
+      <if test="record.assessedScore != null">
+        assessed_score = #{record.assessedScore},
+      </if>
+      <if test="record.extraDynamicScore != null">
+        extra_dynamic_score = #{record.extraDynamicScore},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime},
+      </if>
+      <if test="record.updater != null">
+        updater = #{record.updater},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update assess_score_rule
+    set id = #{record.id},
+      assess_period = #{record.assessPeriod},
+      indicator = #{record.indicator},
+      granted_score = #{record.grantedScore},
+      assessed_score = #{record.assessedScore},
+      extra_dynamic_score = #{record.extraDynamicScore},
+      deleted = #{record.deleted},
+      create_time = #{record.createTime},
+      creator = #{record.creator},
+      update_time = #{record.updateTime},
+      updater = #{record.updater}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="studio.rollinrock.mybatis3.model.AssessScoreRule">
+    update assess_score_rule
+    <set>
+      <if test="assessPeriod != null">
+        assess_period = #{assessPeriod},
+      </if>
+      <if test="indicator != null">
+        indicator = #{indicator},
+      </if>
+      <if test="grantedScore != null">
+        granted_score = #{grantedScore},
+      </if>
+      <if test="assessedScore != null">
+        assessed_score = #{assessedScore},
+      </if>
+      <if test="extraDynamicScore != null">
+        extra_dynamic_score = #{extraDynamicScore},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime},
+      </if>
+      <if test="updater != null">
+        updater = #{updater},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="studio.rollinrock.mybatis3.model.AssessScoreRule">
+    update assess_score_rule
+    set assess_period = #{assessPeriod},
+      indicator = #{indicator},
+      granted_score = #{grantedScore},
+      assessed_score = #{assessedScore},
+      extra_dynamic_score = #{extraDynamicScore},
+      deleted = #{deleted},
+      create_time = #{createTime},
+      creator = #{creator},
+      update_time = #{updateTime},
+      updater = #{updater}
+    where id = #{id}
+  </update>
+</mapper>

@@ -7,7 +7,7 @@
 
     <!--<classPathEntry  location="/Users/cj/.m2/repository/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar"/>-->
     <classPathEntry  location="/Users/cj/.m2/repository/mysql/mysql-connector-java/5.1.31/mysql-connector-java-5.1.31.jar"/>
-    <context id="testMyBatis3" >
+    <context id="testMyBatis3" targetRuntime="studio.rollinrock.mybatis.IntrospectedTableMyBatis3ImplEnhancedExample">
 
         <!--<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin" >-->
             <!--<property name="targetPackage" value="studio.rollinrock.mybatis3.mapper" />-->
@@ -34,12 +34,12 @@
             <property name="addRemarkComments" value="true" />
         </commentGenerator>
 
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/wochanye"
-                        userId="root" password="chinaunicom"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3309/river"
+                        userId="root" password="rollinrock"/>
         <javaModelGenerator targetPackage="studio.rollinrock.mybatis3.model" targetProject="src/test/java" />
         <sqlMapGenerator targetPackage="studio.rollinrock.mybatis3.mapper" targetProject="src/test/resources" />
         <javaClientGenerator type="XMLMAPPER" targetPackage="studio.rollinrock.mybatis3.repository" targetProject="src/test/java" />
-        <table tableName="sys_config" domainObjectName="SysConfig"  >
+        <table tableName="assess_%" >
 
 
 
